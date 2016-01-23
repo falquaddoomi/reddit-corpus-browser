@@ -37,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3rd-party apps
+    'bootstrap3',
+
+    # local apps
+    'interface',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -78,9 +84,18 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'corpus': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'reddit_corpus',
+        'USER': 'ec2-user',
+        # 'PASSWORD': 'mypassword',
+        'HOST': 'ip-172-31-3-238.us-west-2.compute.internal',
+        'PORT': '5432',
     }
 }
 
+DATABASE_ROUTERS = ['redditbrowser.corpus_router.CorpusRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

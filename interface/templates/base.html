@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load bootstrap3 %}
+{% load staticfiles %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Reddit Browser v0.1</title>
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+
+        <link rel="stylesheet" href="{% static 'interface/css/narrow_jumbotron.css' %}" />
+    </head>
+    <body>
+        {% bootstrap_messages %}
+
+        <div class="container">
+          <div class="header clearfix">
+            <nav>
+              <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="#">Home</a></li>
+                <li role="presentation"><a href="#">About</a></li>
+                <li role="presentation"><a href="#">Contact</a></li>
+              </ul>
+            </nav>
+            <h3 class="text-muted">Reddit Corpus Browser v0.1</h3>
+          </div>
+
+          <div class="jumbotron">
+            <h1>Reddit Corpus Browser</h1>
+            <p class="lead">Browse the public reddit comment corpus, with NLP annotations included.</p>
+          </div>
+
+          <div class="row internal-list">
+            <div class="col-lg-4">
+                <h4>Subreddits</h4>
+
+            </div>
+            <div class="col-lg-8">
+                <h4>{% block header %}{% endblock %}</h4>
+                {% block content %}{% endblock %}
+            </div>
+          </div>
+
+          <footer class="footer">
+            <p>smalldatalab 2015</p>
+          </footer>
+        </div>
+
+    </body>
+</html>

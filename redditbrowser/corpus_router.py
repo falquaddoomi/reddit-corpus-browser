@@ -4,7 +4,7 @@ class CorpusRouter(object):
     Routes all requests for reading corpus objects to the corpus database and ignores writes.
     """
 
-    whitelist = ['comments', 'comments_abridged']
+    whitelist = ['comments_abridged', 'subreddits']
 
     def db_for_read(self, model, **hints):
         """

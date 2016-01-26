@@ -1,0 +1,19 @@
+<form action="{% url 'change_sorting' %}" method="post">{% csrf_token %}
+    <label for="sort-order">
+        sort by:
+    </label>
+    <select id="sort-order" name="sort_order" class="selectpicker">
+            <option value="-score" {% if request.session.sort_order == '-score' %}selected="selected"{% endif %}>score (desc)</option>
+            <option value="created_utc" {% if request.session.sort_order == 'created_utc' %}selected="selected"{% endif %}>post date (asc)</option>
+    </select>
+
+    &nbsp;|&nbsp;
+
+    <label for="enable_liwc">enable LIWC:</label>
+    <input type="checkbox" id="enable_liwc" name="enable_liwc" {% if request.session.enable_liwc %}checked="checked"{% endif %} />
+
+    &nbsp;|&nbsp;
+
+    <input type="hidden" name="next" value="{{ request.get_full_path }}" />
+    <input class="btn btn-default" type="submit" value="apply" />
+</form>

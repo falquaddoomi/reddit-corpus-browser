@@ -10,33 +10,32 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-class Comments(models.Model):
-    archived = models.NullBooleanField()
-    author = models.CharField(max_length=-1, blank=True, null=True)
-    author_flair_css_class = models.CharField(max_length=-1, blank=True, null=True)
-    author_flair_text = models.CharField(max_length=-1, blank=True, null=True)
-    body = models.TextField(blank=True, null=True)
-    controversiality = models.IntegerField(blank=True, null=True)
-    created_utc = models.IntegerField(blank=True, null=True)
-    distinguished = models.CharField(max_length=-1, blank=True, null=True)
-    downs = models.IntegerField(blank=True, null=True)
-    edited = models.CharField(max_length=-1, blank=True, null=True)
-    gilded = models.IntegerField(blank=True, null=True)
-    id = models.CharField(max_length=-1, blank=True, null=True)
-    link_id = models.CharField(max_length=-1, blank=True, null=True)
-    name = models.CharField(max_length=-1, blank=True, null=True)
-    parent_id = models.CharField(max_length=-1, blank=True, null=True)
-    retrieved_on = models.IntegerField(blank=True, null=True)
-    score = models.IntegerField(blank=True, null=True)
-    score_hidden = models.NullBooleanField()
-    subreddit = models.CharField(max_length=-1, blank=True, null=True)
-    subreddit_id = models.CharField(max_length=-1, blank=True, null=True)
-    ups = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'comments'
-
+# class Comments(models.Model):
+#     archived = models.NullBooleanField()
+#     author = models.CharField(max_length=-1, blank=True, null=True)
+#     author_flair_css_class = models.CharField(max_length=-1, blank=True, null=True)
+#     author_flair_text = models.CharField(max_length=-1, blank=True, null=True)
+#     body = models.TextField(blank=True, null=True)
+#     controversiality = models.IntegerField(blank=True, null=True)
+#     created_utc = models.IntegerField(blank=True, null=True)
+#     distinguished = models.CharField(max_length=-1, blank=True, null=True)
+#     downs = models.IntegerField(blank=True, null=True)
+#     edited = models.CharField(max_length=-1, blank=True, null=True)
+#     gilded = models.IntegerField(blank=True, null=True)
+#     id = models.CharField(max_length=-1, blank=True, null=True)
+#     link_id = models.CharField(max_length=-1, blank=True, null=True)
+#     name = models.CharField(max_length=-1, blank=True, null=True)
+#     parent_id = models.CharField(max_length=-1, blank=True, null=True)
+#     retrieved_on = models.IntegerField(blank=True, null=True)
+#     score = models.IntegerField(blank=True, null=True)
+#     score_hidden = models.NullBooleanField()
+#     subreddit = models.CharField(max_length=-1, blank=True, null=True)
+#     subreddit_id = models.CharField(max_length=-1, blank=True, null=True)
+#     ups = models.IntegerField(blank=True, null=True)
+#
+#     class Meta:
+#         managed = False
+#         db_table = 'comments'
 
 class CommentsAbridged(models.Model):
     archived = models.NullBooleanField()
@@ -59,3 +58,14 @@ class CommentsAbridged(models.Model):
     class Meta:
         managed = False
         db_table = 'comments_abridged'
+
+class Subreddits(models.Model):
+    subreddit = models.CharField(max_length=-1, blank=True, null=True)
+    subreddit_id = models.CharField(max_length=-1, blank=True, null=True)
+    first_seen = models.IntegerField(blank=True, null=True)
+    last_seen = models.IntegerField(blank=True, null=True)
+    postcount = models.BigIntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'subreddits'

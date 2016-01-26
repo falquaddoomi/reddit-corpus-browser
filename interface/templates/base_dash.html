@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load bootstrap3 %}
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reddit Corpus Browser v0.1</title>
+
+    <link rel="icon" href="{% static 'interface/icons/favicon-reddit.ico' %}" />
+
+    {% bootstrap_css %}
+
+    <!-- extras -->
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/css/bootstrap-select.min.css">#}
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/js/bootstrap-select.min.js"></script>#}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{% static 'interface/css/dashboard.css' %}" />
+</head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><i class="fa fa-reddit-alien"></i> | Reddit Corpus Browser v0.1</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="{% url 'subreddits' %}">Subreddits</a></li>
+            <li><a href="#">Users</a></li>
+            <li><a href="#">Full Search</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            {% block sidebar %}{% endblock %}
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        {% block content %}Content goes here{% endblock %}
+        </div>
+      </div>
+    </div>
+
+    {% bootstrap_javascript %}
+  </body>
+</html>

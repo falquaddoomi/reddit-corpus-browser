@@ -34,6 +34,11 @@
             <div class="col-lg-4">
                 <h4>Subreddits</h4>
 
+                <ol>
+                {% for sub in subreddits %}
+                    <li>{{ sub.subreddit }} (posts: {{ sub.postcount }})</li>
+                {% endfor %}
+                </ol>
             </div>
             <div class="col-lg-8">
                 <h4>{% block header %}{% endblock %}</h4>

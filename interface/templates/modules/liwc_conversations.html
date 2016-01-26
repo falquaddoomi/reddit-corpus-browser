@@ -1,0 +1,21 @@
+{#{% if node.liwc %}#}
+{#    {% for k,v in node.liwc.items %}#}
+{#        <b>{{ k }}:</b> {{ v }}<br />#}
+{#    {% endfor %}#}
+{#{% endif %}#}
+
+{% load misc_utils %}
+
+<table class="turns-table">
+{% for turn in node.turns %}
+    <tr>
+        <td>
+            <div class="turn-indicator-block" style="background-color: {% pastel_for_depth turn.second.depth %}"></div> {{ turn.second.payload.author }}
+        </td>
+        <td><i class="fa fa-arrow-right"></i></td>
+        <td>
+            <div class="turn-indicator-block" style="background-color: {% pastel_for_depth turn.first.depth %}"></div> {{ turn.first.payload.author }}
+        </td>
+    </tr>
+{% endfor %}
+</table>

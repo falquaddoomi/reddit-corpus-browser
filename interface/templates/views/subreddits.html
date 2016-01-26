@@ -1,0 +1,59 @@
+{% extends 'base_dash.html' %}
+
+{% load markdown_deux_tags %}
+
+{% block sidebar %}
+    {% if not chosen_subreddit %}
+        <h4 xmlns="http://www.w3.org/1999/html">Subreddit</h4>
+        <ul class="nav nav-sidebar">
+        {% for sub in subreddits %}
+            <li><a href="{% url 'sub_topics' sub.subreddit %}">{{ sub.subreddit }} (posts: {{ sub.postcount }})</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <h4>Subreddit</h4>
+        <ul class="nav nav-sidebar">
+        <li class="active"><a href="{% url 'subreddits' %}">&raquo; {{ chosen_subreddit.subreddit }} <b>(click to re-select)</b></a></li>
+        </ul>
+
+        <div style="position: relative;">
+            <h4>Topic</h4>
+
+            <div style="position: absolute; right: 2px; top: 0; font-size: 12px;">
+                {% include 'partials/topic_view_filters.html' %}
+            </div>
+        </div>
+
+        <ul class="nav nav-sidebar">
+        {% for topic in topics %}
+            {% if chosen_topic.link_id == topic %}
+                 <li class="active"><a href="{% url 'sub_topic_thread' chosen_subreddit.subreddit topic %}">&raquo; thread #{{ topic }}</a></li>
+            {% else %}
+                <li><a href="{% url 'sub_topic_thread' chosen_subreddit.subreddit topic %}">thread #{{ topic }}</a></li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if chosen_subreddit %}
+    <div style="position: relative;">
+        <h1 style="padding-bottom: 12px; margin-bottom: 1em; border-bottom: solid 1px #ccc;">s/{{ chosen_subreddit.subreddit }}{% if chosen_topic %}/{{ chosen_topic.link_id }}{% endif %}</h1>
+
+        <div style="position: absolute; right: 5px; bottom: 5px;">
+            {% include 'partials/view_filters.html' %}
+        </div>
+    </div>
+    {% else %}
+    Choose a subreddit and topic from the left.
+    {% endif %}
+
+    {% if root_posts %}
+    <div class="container-fluid">
+    {% for node in root_posts %}{% with depth=1 %}
+        {% include "partials/post_template_root.html" %}
+    {% endwith %}{% endfor %}
+    </div>
+    {% endif %}
+{% endblock %}

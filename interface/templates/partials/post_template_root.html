@@ -1,0 +1,25 @@
+{% load markdown_deux_tags %}
+{% load misc_utils %}
+
+<div class="row base_comment" style="border-top: solid 1px #eee; border-bottom: solid 1px #eee; padding-top: 5px; padding-bottom: 5px; border-left-color: {% pastel_for_depth depth %};">
+    <div class="col-md-8">
+    <b>{{ node.payload.author }} @ {{ node.payload.created_utc|from_unix|date:"g:i a, F j Y" }}</b>
+    #{{ node.payload.name }}<a class="comment_anchor" name="comment_{{ node.payload.name }}">&nbsp;</a>
+
+    <span class="score_label">[ score: {{ node.payload.score }} ]</span>
+
+    {{ node.payload.body|markdown }}
+
+    {% if node.children %}
+        {% for ch in node.children %}
+            {% with node=ch depth=depth|add:"1" template_name="partials/post_template_recursive.html" %}
+               {% include template_name %}
+            {% endwith %}
+        {% endfor %}
+    {% endif %}
+    </div>
+
+    <div class="col-md-4">
+        {% include "modules/liwc_conversations.html" %}
+    </div>
+</div>

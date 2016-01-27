@@ -1,11 +1,11 @@
 {% load misc_utils %}
 
-<div class="row base_comment" style="border-top: solid 1px #eee; border-bottom: solid 1px #eee; padding-top: 5px; padding-bottom: 5px; border-left-color: {% pastel_for_depth depth %};">
+<div class="row base_comment" style="border-left-color: {% pastel_for_depth depth %};">
     <div class="col-md-8">
     {% include 'partials/postcontent_template.html' %}
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 metadata-tray">
         {% include "modules/liwc_conversations.html" %}
     </div>
 </div>

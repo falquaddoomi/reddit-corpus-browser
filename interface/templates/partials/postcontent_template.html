@@ -10,7 +10,9 @@
 
 <span class="score_label">[ score: {{ node.payload.score }} ]</span>
 
-{{ node.payload.body|markdown }}
+<div style="padding: 3px;">
+    {{ node.payload.body|markdown }}
+</div>
 
 {% if node.children %}
     {% for ch in node.children %}

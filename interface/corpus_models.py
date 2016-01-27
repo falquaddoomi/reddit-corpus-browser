@@ -74,7 +74,7 @@ class Subreddits(models.Model):
 
 class SubredditTopics(models.Model):
     subreddit = models.CharField(max_length=-1, blank=True, null=True)
-    link_id = models.CharField(max_length=-1, blank=True, null=True)
+    link_id = models.CharField(max_length=-1, blank=True, null=True, primary_key=True)
     first_comment_utc = models.IntegerField(blank=True, null=True)
 
     class Meta:

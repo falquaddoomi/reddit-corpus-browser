@@ -3,8 +3,8 @@
         sort:
     </label>
     <select id="topic-sort-order" name="topic_sort_order">
-            <option value="created_utc" {% if request.session.topic_sort_order == 'created_utc' %}selected="selected"{% endif %}>ascending</option>
-            <option value="-created_utc" {% if request.session.topic_sort_order == '-created_utc' %}selected="selected"{% endif %}>descending</option>
+            <option value="first_comment_utc" {% if request.session.topic_sort_order == 'first_comment_utc' %}selected="selected"{% endif %}>ascending</option>
+            <option value="-first_comment_utc" {% if request.session.topic_sort_order == '-first_comment_utc' %}selected="selected"{% endif %}>descending</option>
     </select>
 
     <input type="hidden" name="next" value="{{ request.get_full_path }}" />

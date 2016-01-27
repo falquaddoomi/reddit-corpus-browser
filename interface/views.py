@@ -82,12 +82,13 @@ def treeify(post_set, add_liwc=True, build_turns=True):
 
     for post in post_set:
         liwc_data = dict(ling_coordination.get_matches(post.body)) if add_liwc else None
-        nodes[post.name] = {'payload': post, 'liwc': liwc_data, 'children': [], 'depth': 1}
+        nodes[post.name] = {'payload': post, 'liwc': liwc_data, 'children': [], 'depth': 1, 'root': False}
 
     for post in post_set:
         if post.parent_id in nodes:
             nodes[post.parent_id]['children'].append(nodes[post.name])
         else:
+            nodes[post.name]['root'] = True
             tops.append(nodes[post.name])
 
     # traverse each root to find the conversational turns

@@ -4,6 +4,7 @@
 
 /.venv
 /db.sqlite3
+/redditbrowser/local_settings.py
 
 *.egg-info
 *.pot

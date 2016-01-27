@@ -1,21 +1,5 @@
-{% load markdown_deux_tags %}
 {% load misc_utils %}
 
 <div class="base_comment nested_comment" style="border-left-color: {% pastel_for_depth depth %};">
-    <b>{{ node.payload.author }} @ {{ node.payload.created_utc|from_unix|date:"g:i a, F j Y" }}</b>
-    #{{ node.payload.name }}<a class="comment_anchor" name="comment_{{ node.payload.name }}">&nbsp;</a>
-
-    (<a href="#comment_{{ node.payload.parent_id }}">parent</a>)
-
-    <span class="score_label">[ score: {{ node.payload.score }} ]</span>
-
-    {{ node.payload.body|markdown }}
-
-    {% if node.children %}
-        {% for ch in node.children %}
-            {% with node=ch depth=depth|add:"1" template_name="partials/post_template_recursive.html" %}
-               {% include template_name %}
-            {% endwith %}
-        {% endfor %}
-    {% endif %}
+    {% include 'partials/postcontent_template.html' %}
 </div>

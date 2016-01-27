@@ -59,6 +59,7 @@ class CommentsAbridged(models.Model):
         managed = False
         db_table = 'comments_abridged'
 
+
 class Subreddits(models.Model):
     subreddit = models.CharField(max_length=-1, blank=True, null=True)
     subreddit_id = models.CharField(max_length=-1, blank=True, null=True)
@@ -69,3 +70,13 @@ class Subreddits(models.Model):
     class Meta:
         managed = False
         db_table = 'subreddits'
+
+
+class SubredditTopics(models.Model):
+    subreddit = models.CharField(max_length=-1, blank=True, null=True)
+    link_id = models.CharField(max_length=-1, blank=True, null=True)
+    first_comment_utc = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'subreddit_topics'

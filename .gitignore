@@ -3,6 +3,7 @@
 # described in https://git-scm.com/docs/gitignore
 
 /.venv
+/creds
 /db.sqlite3
 /redditbrowser/local_settings.py
 
